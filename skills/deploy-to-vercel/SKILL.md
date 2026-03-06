@@ -71,14 +71,18 @@ This is the ideal state. The project is linked and has git integration.
 The project is linked but there's no git repo. Deploy directly with the CLI.
 
 ```bash
-vercel deploy [path] -y
+vercel deploy [path] -y --no-wait
 ```
 
-Use a **10-minute timeout** (600000ms) since builds can take a while. The CLI returns the deployment URL directly.
+Use `--no-wait` so the CLI returns immediately with the deployment URL instead of blocking until the build finishes (builds can take a while). Then check on the deployment status with:
+
+```bash
+vercel inspect <deployment-url>
+```
 
 For production deploys (only if user explicitly asks):
 ```bash
-vercel deploy [path] --prod -y
+vercel deploy [path] --prod -y --no-wait
 ```
 
 ---
@@ -107,13 +111,13 @@ The CLI is working but the project isn't linked yet. This is the opportunity to 
 
 3. **Then deploy using the best available method:**
    - If a git remote exists → commit and push (see git push method above)
-   - If no git remote → `vercel deploy [path] -y`
+   - If no git remote → `vercel deploy [path] -y --no-wait`, then `vercel inspect <url>` to check status
 
 4. **If the user declines linking**, do a one-off deploy without linking:
    ```bash
-   vercel deploy [path] -y
+   vercel deploy [path] -y --no-wait
    ```
-   This still works — it will prompt for project setup inline. Use `-y` to accept defaults.
+   This still works — it will prompt for project setup inline. Use `-y` to accept defaults and `--no-wait` to return immediately. Check deployment status with `vercel inspect <url>`.
 
 ---
 
@@ -138,7 +142,7 @@ The Vercel CLI isn't set up at all.
    vercel link          # if no git remote
    ```
 
-4. **Deploy** using the best available method (git push if remote exists, otherwise `vercel deploy -y`).
+4. **Deploy** using the best available method (git push if remote exists, otherwise `vercel deploy -y --no-wait`, then `vercel inspect <url>` to check status).
 
 ---
 
@@ -194,7 +198,7 @@ You likely cannot run `vercel login` or `git push`. Go directly to the **no-auth
 Always show the user the deployment URL.
 
 - **Git push:** Use `vercel ls --format json` to find the preview URL. If the CLI isn't authenticated, tell the user to check the Vercel dashboard or commit status checks.
-- **CLI deploy:** Show the URL returned by `vercel deploy`.
+- **CLI deploy:** Show the URL returned by `vercel deploy --no-wait`. Use `vercel inspect <url>` to check build status and report it to the user.
 - **No-auth fallback:** Show both the preview URL and the claim URL:
   ```
   Deployment successful!
