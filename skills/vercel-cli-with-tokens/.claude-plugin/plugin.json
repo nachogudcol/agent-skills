@@ -1,0 +1,5 @@
+{
+  "name": "vercel-cli-with-tokens",
+  "description": "Vercel CLI usage with token authentication",
+  "version": "1.0.0"
+}
