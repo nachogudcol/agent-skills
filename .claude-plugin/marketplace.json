@@ -1,0 +1,38 @@
+{
+  "name": "vercel-agent-skills",
+  "owner": {
+    "name": "vercel-labs"
+  },
+  "plugins": [
+    {
+      "name": "deploy-to-vercel",
+      "source": "./skills/deploy-to-vercel",
+      "description": "Skills for deploying projects to Vercel"
+    },
+    {
+      "name": "react-best-practices",
+      "source": "./skills/react-best-practices",
+      "description": "React best practices and patterns"
+    },
+    {
+      "name": "react-native-skills",
+      "source": "./skills/react-native-skills",
+      "description": "React Native development skills"
+    },
+    {
+      "name": "vercel-cli-with-tokens",
+      "source": "./skills/vercel-cli-with-tokens",
+      "description": "Vercel CLI usage with token authentication"
+    },
+    {
+      "name": "web-design-guidelines",
+      "source": "./skills/web-design-guidelines",
+      "description": "Web design guidelines and standards"
+    },
+    {
+      "name": "composition-patterns",
+      "source": "./skills/composition-patterns",
+      "description": "UI composition patterns"
+    }
+  ]
+}
